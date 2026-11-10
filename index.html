@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALL STAR GAMES | Ultimate Gaming Universe</title>
+<meta name="description" content="Discover racing, adventure, action, sports and puzzle games at ALL STAR GAMES.">
+<style>
+:root{--bg:#080914;--panel:#111326;--blue:#438cff;--purple:#995cff;--muted:#a4a9c2;--line:#292c48}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:white;font-family:Arial,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+header{height:76px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;background:#0b0d1bf2;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;backdrop-filter:blur(15px)}
+.logo{font-size:23px;font-weight:900;letter-spacing:1px}
+.logo span{color:#8c69ff}
+nav{display:flex;gap:25px;color:#d4d6e5;font-size:14px}
+nav a:hover{color:#8c78ff}
+.actions{display:flex;gap:10px;align-items:center}
+.btn{border:0;padding:11px 19px;border-radius:9px;color:white;background:linear-gradient(100deg,var(--blue),var(--purple));font-weight:bold}
+.btn:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.btn.secondary{background:#191d35;border:1px solid #343958}
+.hero{min-height:440px;padding:95px 8%;display:flex;align-items:center;background:radial-gradient(ellipse at 75% 30%,#35256d 0%,transparent 40%),radial-gradient(ellipse at 15% 90%,#102e62 0%,transparent 40%),#090b19}
+.hero-content{max-width:690px}
+.eyebrow{color:#9b87ff;font-size:13px;font-weight:bold;letter-spacing:3px;margin-bottom:20px}
+.hero h1{font-size:clamp(43px,7vw,78px);line-height:1.03;font-weight:950}
+.hero h1 span{background:linear-gradient(90deg,#52baff,#ad72ff);background-clip:text;color:transparent}
+.hero p{color:#b6bad0;line-height:1.8;margin:22px 0;max-width:570px}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.stats{display:flex;gap:40px;margin-top:42px}
+.stat strong{font-size:23px;display:block}
+.stat small{color:var(--muted)}
+section{padding:45px 6%}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:24px}
+.section-head h2{font-size:25px}
+.muted{color:var(--muted);font-size:13px}
+.categories{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}
+.chip{padding:9px 16px;border:1px solid var(--line);background:#111326;color:#d5d6e8;border-radius:30px}
+.chip.active,.chip:hover{background:#29204e;border-color:#8a6bff;color:white}
+.search{background:#111326;border:1px solid var(--line);padding:13px 17px;border-radius:10px;color:white;width:min(100%,300px);outline:none}
+.search:focus{border-color:#8d70ff}
+.games-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:19px}
+.game-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.25s}
+.game-card:hover{transform:translateY(-5px);border-color:#8067ef;box-shadow:0 10px 35px #6547aa20}
+.cover{height:155px;display:grid;place-items:center;font-size:60px;position:relative;background:linear-gradient(135deg,#1b3672,#37205f)}
+.cover.c2{background:linear-gradient(135deg,#713c48,#25245b)}
+.cover.c3{background:linear-gradient(135deg,#12635d,#18274e)}
+.cover.c4{background:linear-gradient(135deg,#764a22,#30204f)}
+.cover.c5{background:linear-gradient(135deg,#224c7c,#40256b)}
+.cover.c6{background:linear-gradient(135deg,#58417c,#173b60)}
+.cover.c7{background:linear-gradient(135deg,#175d7b,#35285d)}
+.cover.c8{background:linear-gradient(135deg,#62402c,#263e65)}
+.tag{position:absolute;top:12px;left:12px;background:#080914c9;border:1px solid #ffffff30;border-radius:20px;padding:5px 9px;font-size:10px}
+.game-info{padding:15px}
+.game-info h3{font-size:16px;margin-bottom:7px}
+.game-info p{font-size:12px;color:var(--muted);min-height:30px;line-height:1.5}
+.game-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:13px}
+.game-bottom small{color:#9f91ff}
+.play{background:#28204b;border:1px solid #5a4698;color:white;padding:8px 13px;border-radius:7px}
+.play:hover{background:#6045a6}
+.feature{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.feature-card{padding:27px;border-radius:16px;border:1px solid var(--line);background:linear-gradient(120deg,#171d3d,#19112e)}
+.feature-card .emoji{font-size:38px;margin-bottom:15px}
+.feature-card h3{font-size:22px;margin-bottom:9px}
+.feature-card p{color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:18px}
+.leaderboard{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.player-row{display:flex;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line);gap:14px}
+.player-row:last-child{border:0}
+.rank{color:#a68bff;font-weight:bold;width:25px}
+.avatar{height:37px;width:37px;border-radius:50%;display:grid;place-items:center;background:#272b54}
+.player-name{flex:1;font-weight:bold}
+.score{color:#80b5ff;font-size:13px}
+footer{border-top:1px solid var(--line);padding:35px 6%;color:var(--muted);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer strong{color:white}
+.modal{position:fixed;inset:0;background:#000b;z-index:30;display:none;place-items:center;padding:20px}
+.modal.show{display:grid}
+.modal-box{background:#131529;border:1px solid #45416c;border-radius:17px;padding:27px;width:min(100%,420px);position:relative}
+.modal-box h2{margin-bottom:10px}
+.modal-box p{color:var(--muted);font-size:13px;line-height:1.6;margin-bottom:18px}
+.modal-box input{width:100%;padding:13px;margin:7px 0;background:#090c1b;border:1px solid var(--line);border-radius:8px;color:white}
+.modal-box .btn{width:100%;margin-top:12px}
+.close{position:absolute;right:17px;top:14px;background:none;color:white;border:0;font-size:23px}
+.notice{font-size:12px;color:#a9a5c8;margin-top:12px}
+.dashboard{display:none;padding:30px 6%;min-height:70vh}
+.dashboard.show{display:block}
+.dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:25px 0}
+.dash-card{background:var(--panel);border:1px solid var(--line);padding:22px;border-radius:12px}
+.dash-card strong{display:block;font-size:27px;margin-top:10px;color:#9e8bff}
+.hidden{display:none!important}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#252449;border:1px solid #7868c5;padding:12px 20px;border-radius:9px;display:none;z-index:50}
+@media(max-width:900px){.games-grid{grid-template-columns:repeat(2,1fr)}nav{gap:12px}}
+@media(max-width:600px){header{height:auto;padding:15px 4%;flex-wrap:wrap;gap:13px}.logo{font-size:19px}nav{order:3;width:100%;justify-content:center;font-size:12px}.actions .btn{padding:9px 11px;font-size:12px}.hero{padding:70px 6%}.stats{gap:22px}.stat strong{font-size:19px}.games-grid{grid-template-columns:1fr 1fr;gap:10px}.cover{height:115px;font-size:43px}.game-info{padding:10px}.game-info h3{font-size:14px}.feature{grid-template-columns:1fr}.dash-grid{grid-template-columns:1fr 1fr}section{padding:32px 4%}}
+</style>
+</head>
+<body>
+
+<header>
+<a class="logo" href="#" onclick="showHome()">⭐ ALL STAR <span>GAMES</span></a>
+<nav>
+<a href="#" onclick="showHome()">Home</a>
+<a href="#games">Games</a>
+<a href="#community">Community</a>
+<a href="#about">About</a>
+</nav>
+<div class="actions">
+<button class="btn secondary" onclick="openModal('login')">Login</button>
+<button class="btn" onclick="openModal('signup')">Join Free</button>
+</div>
+</header>
+
+<main id="home">
+<div class="hero">
+<div class="hero-content">
+<div class="eyebrow">★ YOUR NEXT GAMING DESTINATION</div>
+<h1>PLAY BEYOND <span>LIMITS.</span></h1>
+<p>Discover exciting games, explore new worlds and challenge yourself. Welcome to ALL STAR GAMES — your universe of entertainment.</p>
+<div class="hero-buttons">
+<a class="btn" href="#games">EXPLORE GAMES →</a>
+<button class="btn secondary" onclick="openModal('signup')">CREATE PROFILE</button>
+</div>
+<div class="stats">
+<div class="stat"><strong>∞</strong><small>Gaming possibilities</small></div>
+<div class="stat"><strong>5+</strong><small>Game categories</small></div>
+<div class="stat"><strong>1</strong><small>Gaming universe</small></div>
+</div>
+</div>
+</div>
+
+<section id="games">
+<div class="section-head">
+<div><h2>🔥 Explore Games</h2><p class="muted">Find your next favourite game.</p></div>
+<input class="search" id="search" placeholder="🔍 Search games..." oninput="filterGames()">
+</div>
+<div class="categories" id="categories">
+<button class="chip active" onclick="setCategory('All',this)">All Games</button>
+<button class="chip" onclick="setCategory('Racing',this)">🏎 Racing</button>
+<button class="chip" onclick="setCategory('Action',this)">⚔ Action</button>
+<button class="chip" onclick="setCategory('Adventure',this)">🌍 Adventure</button>
+<button class="chip" onclick="setCategory('Sports',this)">⚽ Sports</button>
+<button class="chip" onclick="setCategory('Puzzle',this)">🧩 Puzzle</button>
+</div>
+<div class="games-grid" id="gamesGrid">
+<article class="game-card" data-category="Racing" data-name="Neon Street Racer">
+<div class="cover">🏎️<span class="tag">RACING</span></div>
+<div class="game-info"><h3>Neon Street Racer</h3><p>Speed through a futuristic city.</p><div class="game-bottom"><small>Single Player</small><button class="play" onclick="comingSoon('Neon Street Racer')">Play Now</button></div></div>
+</article>
+<article class="game-card" data-category="Action" data-name="Shadow Arena">
+<div class="cover c2">⚔️<span class="tag">ACTION</span></div>
+<div class="game-info"><h3>Shadow Arena</h3><p>Enter an action-packed challenge.</p><div class="game-bottom"><small>Coming Soon</small><button class="play" onclick="comingSoon('Shadow Arena')">Explore</button></div></div>
+</article>
+<article class="game-card" data-category="Adventure" data-name="Lost Kingdom">
+<div class="cover c3">🏰<span class="tag">ADVENTURE</span></div>
+<div class="game-info"><h3>Lost Kingdom</h3><p>Discover mysterious new worlds.</p><div class="game-bottom"><small>Coming Soon</small><button class="play" onclick="comingSoon('Lost Kingdom')">Explore</button></div></div>
+</article>
+<article class="game-card" data-category="Sports" data-name="Football Legends">
+<div class="cover c4">⚽<span class="tag">SPORTS</span></div>
+<div class="game-info"><h3>Football Legends</h3><p>Show your skills on the field.</p><div class="game-bottom"><small>Coming Soon</small><button class="play" onclick="comingSoon('Football Legends')">Explore</button></div></div>
+</article>
+<article class="game-card" data-category="Puzzle" data-name="Mind Master">
+<div class="cover c5">🧩<span class="tag">PUZZLE</span></div>
+<div class="game-info"><h3>Mind Master</h3><p>Give your brain a fun challenge.</p><div class="game-bottom"><small>Coming Soon</small><button class="play" onclick="comingSoon('Mind Master')">Explore</button></div></div>
+</article>
+<article class="game-card" data-category="Racing" data-name="Offroad Adventure">
+<div class="cover c6">🚙<span class="tag">RACING</span></div>
+<div class="game-info"><h3>Offroad Adventure</h3><p>Take on challenging terrain.</p><div class="game-bottom"><small>Coming Soon</small><button class="play" onclick="comingSoon('Offroad Adventure')">Explore</button></div></div>
+</article>
+<article class="game-card" data-category="Action" data-name="Space Defender">
+<div class="cover c7">🚀<span class="tag">ACTION</span></div>
+<div class="game-info"><h3>Space Defender</h3><p>Protect the galaxy in an epic quest.</p><div class="game-bottom"><small>Coming Soon</small><button class="play" onclick="comingSoon('Space Defender')">Explore</button></div></div>
+</article>
+<article class="game-card" data-category="Adventure" data-name="Jungle Quest">
+<div class="cover c8">🌴<span class="tag">ADVENTURE</span></div>
+<div class="game-info"><h3>Jungle Quest</h3><p>Explore the wild and find surprises.</p><div class="game-bottom"><small>Coming Soon</small><button class="play" onclick="comingSoon('Jungle Quest')">Explore</button></div></div>
+</article>
+</div>
+<p class="muted" id="noResults" style="display:none;margin-top:20px">No games found. Try another search.</p>
+</section>
+
+<section id="community">
+<div class="section-head"><div><h2>🌟 Gaming Community</h2><p class="muted">A place for players to connect and compete.</p></div></div>
+<div class="feature">
+<div class="feature-card"><div class="emoji">👥</div><h3>Multiplayer Arena</h3><p>Meet other players and enjoy multiplayer experiences. Online matchmaking will be added when the multiplayer servers are ready.</p><button class="btn" onclick="comingSoon('Multiplayer Arena')">Explore Arena</button></div>
+<div class="feature-card"><div class="emoji">🏆</div><h3>Player Leaderboard</h3><p>Discover the leaderboard experience. Real player scores will appear after the account and game servers are connected.</p><button class="btn" onclick="document.getElementById('leaderboard').scrollIntoView({behavior:'smooth'})">View Leaderboard</button></div>
+</div>
+</section>
+
+<section id="leaderboard">
+<div class="section-head"><div><h2>🏆 Leaderboard Preview</h2><p class="muted">Example layout — not real player rankings.</p></div></div>
+<div class="leaderboard">
+<div class="player-row"><span class="rank">01</span><span class="avatar">⭐</span><span class="player-name">StarChampion</span><span class="score">Demo score</span></div>
+<div class="player-row"><span class="rank">02</span><span class="avatar">🎮</span><span class="player-name">PixelMaster</span><span class="score">Demo score</span></div>
+<div class="player-row"><span class="rank">03</span><span class="avatar">🚀</span><span class="player-name">GalaxyPlayer</span><span class="score">Demo score</span></div>
+</div>
+</section>
+
+<section id="about">
+<div class="feature-card">
+<div class="eyebrow">ABOUT OUR UNIVERSE</div>
+<h2 style="font-size:27px;margin-bottom:12px">Welcome to ALL STAR GAMES</h2>
+<p>We are building a gaming destination for players who love discovery, competition and fun. Our vision is to bring different gaming experiences together in one place.</p>
+<p class="muted">This is our first website version. New games and online features will be introduced as development continues.</p>
+</div>
+</section>
+</main>
+
+<section class="dashboard" id="dashboard">
+<h1>⭐ Owner Dashboard</h1>
+<p class="muted">Dashboard preview. Connect a secure backend before using real player or revenue data.</p>
+<div class="dash-grid">
+<div class="dash-card">Website status<strong>Preview</strong></div>
+<div class="dash-card">Game listings<strong>8</strong></div>
+<div class="dash-card">Live players<strong>Not connected</strong></div>
+</div>
+<button class="btn secondary" onclick="showHome()">← Back to website</button>
+</section>
+
+<footer>
+<div><strong>⭐ ALL STAR GAMES</strong><p class="muted" style="margin-top:8px">Play Beyond Limits.</p></div>
+<div>© 2026 ALL STAR GAMES. All rights reserved.</div>
+<div><a href="#about">About</a> · <a href="#games">Games</a></div>
+</footer>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+<div class="modal-box">
+<button class="close" onclick="closeModal()">×</button>
+<div id="modalContent"></div>
+</div>
+</div>
+<div id="toast"></div>
+
+<script>
+let currentCategory='All';
+function setCategory(category,button){
+ currentCategory=category;
+ document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+ button.classList.add('active');
+ filterGames();
+}
+function filterGames(){
+ const term=document.getElementById('search').value.toLowerCase();
+ let visible=0;
+ document.querySelectorAll('.game-card').forEach(card=>{
+  const matchCategory=currentCategory==='All'||card.dataset.category===currentCategory;
+  const matchSearch=card.dataset.name.toLowerCase().includes(term);
+  card.style.display=matchCategory&&matchSearch?'':'none';
+  if(matchCategory&&matchSearch)visible++;
+ });
+ document.getElementById('noResults').style.display=visible?'none':'block';
+}
+function openModal(type){
+ const content=document.getElementById('modalContent');
+ if(type==='login'){
+ content.innerHTML='<h2>Welcome Back</h2><p>Login interface preview. Secure account login will be enabled after backend setup.</p><input id="loginEmail" type="email" placeholder="Email address"><input id="loginPass" type="password" placeholder="Password"><button class="btn" onclick="demoLogin()">Continue</button><div class="notice">Demo only — do not enter a real password.</div><p style="margin-top:17px">New here? <a href="#" style="color:#a98cff" onclick="openModal(\\'signup\\')">Create an account</a></p>';
+ }else if(type==='signup'){
+ content.innerHTML='<h2>Join ALL STAR GAMES</h2><p>Create your player profile preview. Real registration requires a secure server.</p><input id="newName" placeholder="Choose a username"><input id="newEmail" type="email" placeholder="Email address"><input id="newPass" type="password" placeholder="Create password"><button class="btn" onclick="demoSignup()">Create Profile</button><div class="notice">Demo only — do not enter real personal information or passwords.</div>';
+ }else{
+ content.innerHTML='<h2>Your Player Profile</h2><p>Profile preview. A real profile will be linked to your secure account later.</p>';
+ }
+ document.getElementById('modal').classList.add('show');
+}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function demoLogin(){toast('Login is a preview. Secure accounts are not connected yet.');closeModal()}
+function demoSignup(){const n=document.getElementById('newName').value.trim();if(!n){toast('Please enter a demo username.');return}toast('Profile preview created for '+n+'. No account was saved.');closeModal()}
+function comingSoon(name){toast(name+' is coming soon! We are building the game.')}
+function toast(message){
+ const el=document.getElementById('toast');el.textContent=message;el.style.display='block';
+ clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.style.display='none',3000);
+}
+function showHome(){
+ document.getElementById('home').classList.remove('hidden');
+ document.getElementById('dashboard').classList.remove('show');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
